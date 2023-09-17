@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>first</title>
+  <script>
+    function s()
+    {
+      var d=document.getElementById("fn1");
+      var e=document.getElementById("mn1");
+      var f=document.getElementById("ln1");
+      var a=document.getElementById("fn");
+      var b=document.getElementById("mn");
+      var c=document.getElementById("ln");
+      
+      if(a.value=="")
+      {
+       d.style.display="";
+       a.style.border="1px solid red";
+      }
+     
+      if(b.value=="")
+      {
+        e.style.display="";
+        b.style.border="1px solid red";
+      }
+      if(c.value=="")
+      {
+        f.style.display="";
+        c.style.border="1px solid red";
+      }
+  
+   }
+   function s1()
+   { var d=document.getElementById("fn1");
+      var e=document.getElementById("mn1");
+      var f=document.getElementById("ln1");
+      var a=document.getElementById("fn");
+      var b=document.getElementById("mn");
+      var c=document.getElementById("ln");  
+      if(a.value!="")    //a.value!="" means writing something
+      {
+        d.style.display="none";
+        a.style.border="";
+      }
+      if(b.value!="")
+      {
+        e.style.display="none";
+        b.style="";
+      }
+      if(c.value!="")
+      {
+        f.style.display="none";
+        c.style="";}
+   }
+  </script>
+</head>
+
+<body>
+FirstName :- <input type="text"   Id="fn" onfocus="s1()"/> <span style="display:none;color:red " Id="fn1" >Please enter  First name.
+</span><br><br>
+
+MiddleName:- <input type="text"  Id="mn" onkeyup="s1()"/> <span style="display:none;color:red" Id="mn1" >Please enter  Middle name.
+</span><br><br>
+
+LastName :- <input type="text" Id="ln" onkeydown="s1()"/><span style="display:none;color:red" Id="ln1" >Please enter  Middle name.</span> <br><br>
+
+
+<input type="button" value="add"   onclick="s()"/>
+</body>
+
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>last</title>
+</head>
+<script>
+    var bb1;
+	
+	function f1()
+	{
+		var b1=document.getElementById("box1");
+		var b2=document.getElementById("box2");
+   	    b2.innerHTML+="<option>"+b1.value+"</option>"
+	    //b1[b1.selectedIndex]. innerHTML="";
+	    b1.remove(b1.selectedIndex);
+
+
+    }
+    function f2()
+	{
+		var b1=document.getElementById("box1");
+		var b2=document.getElementById("box2");
+   	    b1.innerHTML+="<option>"+b2.value+"</option>"
+   	    b2.remove(b2.selectedIndex);
+    }
+	function f3()
+	{ var i;
+      var b1=document.getElementById("box1");
+	  var b2=document.getElementById("box2");
+
+      for(i=0;i<b1.length;i++)
+	  b2.innerHTML+="<option>"+b1[i].value+"</option>"
+	  b1.innerHTML="";
+
+	}
+	function f4()
+	{ var i;
+      var b1=document.getElementById("box1");
+	  var b2=document.getElementById("box2");
+
+      for(i=0;i<b2.length;i++)
+	  b1.innerHTML+="<option>"+b2[i].value+"</option>"
+	  b2.innerHTML="";
+
+	}
+</script>
+<body>
+
+<select multiple id="box1" >
+	<option>Priyank</option>
+	<option>Brijesh</option>
+	<option>Nirlep</option>
+	<option>Ronak</option>
+</select>	
+
+<input type="button" value="<" onclick="f1()">
+<input type="button" value=">" onclick="f2()">
+<input type="button" value="<<" onclick="f3()">
+<input type="button" value=">>" onclick="f4()">
+
+<select multiple id="box2"></select>
+
+
+
+</body>
+</html>

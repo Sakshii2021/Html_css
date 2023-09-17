@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<style>
+		td
+		{
+			text-align: center;
+			background-color: yellow;
+		}
+	</style>
+
+	<script>
+		//here loc means loaction.location for row edit or delete button for which clicked.here it is declared global because in update function location of row is require in which we want to update.and update function is called on click of update button.so we notuse this pointer here.
+        var loc;
+
+		//it is function for display table and insert raw coloun with value that user inserted.
+		//function work only when click on Insert Button.
+		function display_table()
+		{
+		  //take id of table	
+          var table=document.getElementById("table");
+
+          //display table 
+          table.style.display="";
+
+          //insert Row in table and return that row in var row for insertCell in that perticular Row. Row index is start from -1.
+          var row=table.insertRow(-1);
+
+          //take id of fn and ln textboxes
+          var fn=document.getElementById("fn");
+          var ln=document.getElementById("ln");
+
+          //insert Cell in perticular raw that is in var row.
+
+            //inset firat cell and instantly add value that is present in fn textbox. we can also add it by var.for that we first add Cell 
+              //in perticular var.
+            row.insertCell(0).innerHTML=fn.value;
+            //inset second cell in same row and instantly add value that is present in ln textbox. 
+            row.insertCell(1).innerHTML=ln.value;
+            //inset third cell in same row and instantly add button edit and delete. 
+            row.insertCell(2).innerHTML="<input type='button' value='Edit' onclick='edit(this)'><input type='button' value='Delete' onclick='Delete(this)'>";
+        }
+         
+        //function for delte perticular row.
+        //fuction work only when clicked on delte button of row. 
+        function Delete(del)
+        {
+           //?	
+           loc=del.parentNode.parentNode; 
+
+           //All properties or elements of table is return in var table. 
+           var table=document.getElementById("table");
+
+           //here del.rowIndex return index of row delete button of which clicked.here we can also delete row by put perticular index like 0,1,2.. if we write -1 than it delete always last inserted row.
+           table.deleteRow(loc.rowIndex);      
+        }
+
+        //function for change button insert with update button and put vaalue of Firstname and Lastname in textbox fn ln.
+        //function work only when click on edit button
+        function edit(edit)
+        {
+          loc=edit.parentNode.parentNode;
+
+          //0th cell of row(in which we clicked on edit button) is return into var cello0. and 1th cell in var cell1.
+          var cell0=loc.cells[0]; 
+          var cell1=loc.cells[1];
+
+          //now we change value of textbox fn and ln with value of cell1 and cell2 of row(in which we clicked on edit button) 
+          var fn=document.getElementById("fn");
+          fn.value=cell0.innerHTML;
+          var ln=document.getElementById("ln");
+          ln.value=cell1.innerHTML;
+
+          //when click on edit button update button is dispaly instead of insert. so we display none for insert. and display the update button.
+          var update=document.getElementById("update_but");
+          update.style.display="";
+          var insert=document.getElementById("insert_but");
+          insert.style.display="none";
+         }
+
+         //function for update values of Firstname Lastname with value in fn ln textbox.
+         //function work only when click on edit button
+         function update()
+         {
+         	var fn=document.getElementById("fn");
+         	var ln=document.getElementById("ln");
+
+            //we take 0th cell and 1th cell of row in var cell0 and cell1.and put value of text box fn and ln into cell0 and cell1.
+            //here cell is HTML element in which we insert so we insert by innerHTML.and fn ln are textbox so it has value that we type.
+         	var cell0=loc.cells[0];
+         	cell0.innerHTML=fn.value;
+         	var cell1=loc.cells[1];
+         	cell1.innerHTML=ln.value;
+
+            //when click on update button insert button is dispaly instead of update. so we display none for update. and display the insert button.
+            var update=document.getElementById("update_but");
+            update.style.display="none";
+            var insert=document.getElementById("insert_but");
+            insert.style.display="";
+            
+         }
+	</script>
+</head>
+<body>
+  <!--for take fn and ln via textbox-->
+  Firstname : <input type="text" id="fn">
+  Lastname : <input type="text" id="ln">
+  <input type="button" value="Insert" id="insert_but" onclick="display_table()">
+  <input type="button" value="Update" style="display:none" id="update_but" onclick="update()">
+
+  <br>
+  <br>
+  
+  <!--make table header and table is not display currently it is display only when user click on Insert Button-->
+  <table border=1 id="table" style="display:none">
+  <tr>
+   <td>Firstname</td>
+   <td>Lastname</td>
+   <td>Action</td>	
+  </tr>
+  </table>	
+
+</body>
+</html>
